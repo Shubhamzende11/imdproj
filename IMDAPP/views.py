@@ -635,7 +635,7 @@ class SaleCreateView(View):
             except (ObjectDoesNotExist, MultipleObjectsReturned):
                 pass
 
-            messages.success(request, "Sold items added successfully")
+            messages.success(request, "Send items successfully")
             return redirect('sale-bill', billno=billobj.billno)
         form = SaleForm(request.GET or None)
         formset = SaleItemFormset(request.GET or None)
@@ -758,7 +758,7 @@ class NonSaleCreateView(View):
             except (ObjectDoesNotExist, MultipleObjectsReturned):
                 pass
 
-            messages.success(request, "Sold items added successfully")
+            messages.success(request, "Send items successfully")
             return redirect('nonsale-bill', billno=billobj.billno)
         form = NonSaleForm(request.GET or None)
         formset = NonSaleItemFormset(request.GET or None)
@@ -965,7 +965,7 @@ class StockCreateView(View):
             except (ObjectDoesNotExist, MultipleObjectsReturned):
                 pass
 
-            messages.success(request, "Sold items have been registered successfully")
+            messages.success(request, "Received item successfully")
             return redirect('inward-bill', billno=billobj.billno)
         form = StockForm(request.GET or None)
         inwarditems = InwardBillDetails(request.GET or None)
@@ -1032,7 +1032,7 @@ class StockBillView(View):
         if form.is_valid():
             billdetailsobj = InwardBillDetails.objects.get(billno=billno)
             billdetailsobj.save()
-            messages.success(request, "Bill details have been modified successfully")
+            messages.success(request, "Bill details  updated successfully")
         context = {
             'bill': Stock.objects.get(billno=billno),
             'items': Stock.objects.filter(billno=billno),
@@ -1123,7 +1123,7 @@ class NonStockCreateView(View):
             except (ObjectDoesNotExist, MultipleObjectsReturned):
                 pass
 
-            messages.success(request, "Sold item added successfully")
+            messages.success(request, "Received item successfully")
             return redirect('inwardnc-bill', billno=billobj.billno)
         form = NonStockForm(request.GET or None)
         inwarditems = NonInwardBillDetails(request.GET or None)
@@ -1155,7 +1155,7 @@ class NonStockBillView(View):
         if form.is_valid():
             billdetailsobj = NonInwardBillDetails.objects.get(billno=billno)
             billdetailsobj.save()
-            messages.success(request, "Bill details have been modified successfully")
+            messages.success(request, "Bill details updated successfully")
         context = {
             'bill': NonStock.objects.get(billno=billno),
             'items': NonStock.objects.filter(billno=billno),
